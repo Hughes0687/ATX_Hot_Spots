@@ -2,7 +2,7 @@
 
 require 'pg'
 
-db = PG.connect(host: 'localhost', dbname: 'RPS_db')
+db = PG.connect(host: 'localhost', dbname: 'ATX')
 
 command = <<-SQL
 CREATE TABLE users(
@@ -15,7 +15,7 @@ CREATE TABLE users(
    PRIMARY KEY( id )
 );
 
-CREATE TABLE matches(
+CREATE TABLE restaurants(
    id SERIAL,
    user1_id integer,
    user2_id integer,
