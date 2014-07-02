@@ -1,0 +1,27 @@
+<center><h3><%=@user.username%>'s profile</h3></center>
+
+<p>user id: <%=@user.id%></p>
+<p>password digest: <%=@user.password_digest%></p>
+<p>wins: <%=@user.wins%></p>
+<p>losses: <%=@user.losses%></p>
+<p>session id: <%=@user.session_id%></p>
+<br><br>
+
+<% if @matches.length <= 7  %>
+  <% session[:user_id] = @user.id %>
+  <a href='/new_game'>New Game</a>
+  <br><br>
+<% end %>
+
+<% @matches.each do |match|%>
+  <% opponent_id = match["user1_id"].to_i %>
+  <% if session[:user_id] == match["user1_id"].to_i %>
+    <% opponent_id = match["user2_id"].to_i %>
+  <% end %>
+  <a href='/continue_game/<%= @user.id %>/<%= match["id"] %>' value="testing">Continue Game with <%=opponent_id%> (<%=match["id"]%>)
+  <br><br>
+<% end %>
+
+
+
+

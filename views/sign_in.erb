@@ -1,0 +1,22 @@
+<center><h3>Sign In</h3></center>
+<br><br>
+<div class="row">
+  <div class="small-11 medium-10 large-9 small-centered medium-centered large-centered columns">
+      <form method="post" action="/sign_in">
+        <h6><span class="inputbox">Username: </span><input type="text" name="username"/></h6>
+        <h6><span class="inputbox">Password: </span><input type="password" name="password"/></h6>
+        <input type="submit" class="submit small button"></input>
+      </form>
+      <% if @result[:error] %>
+        <% if @result[:error] == :no_user_exist %>
+          <p>No user with that username exist<br>
+          Try again with a different username or sign up!</p>
+        <% elsif @result[:error] == :invalid_password %>
+          <p>You entered the wrong password<br>
+          Try again with a different password</p>
+        <% else %>
+          <p>Unknown error: <%= @result[:error] %></p>
+        <% end %>
+      <% end %>
+  </div>
+</div>

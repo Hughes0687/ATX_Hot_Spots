@@ -1,0 +1,23 @@
+<center><h3>Sign Up</h3></center>
+<br><br>
+<div class="row">
+  <div class="small-11 medium-10 large-9 small-centered medium-centered large-centered columns">
+      <form method="post" action="/sign_up">
+        <h6><span class="inputbox">Username: </span><input type="text" name="username"/></h6>
+        <h6><span class="inputbox">Password: </span><input type="password" name="password"/></h6>
+        <h6><span class="inputbox">Confirm Password: </span><input type="password" name="password_confirm"/></h6>
+        <input type="submit" class="submit small button"></input>
+      </form>
+      <% if @result[:error] %>
+        <% if @result[:error] == :user_already_exist %>
+          <p>A user with that username already exist.
+          Please choose another username</p>
+        <% elsif @result[:error] == :mismatch_passwords %>
+          <p>The passwords you entered don't match.
+          Try again with matching passwords</p>
+        <% else %>
+          <p>Unknown error: <%= @result[:error] %></p>
+        <% end %>
+      <% end %>
+  </div>
+</div>

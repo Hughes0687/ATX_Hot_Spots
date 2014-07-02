@@ -1,0 +1,78 @@
+<%= @match.match_id %>
+<div class="row">
+  <div class="small-5 medium-4 large-3 columns">
+    <center><h2><%= @user1.username %> (<%= @user1.id %>)</h2></center>
+  </div>
+  <div class="small-2 medium-4 large-6 columns">
+    <center><h3>vs.</h3></center>
+  </div>
+  <div class="small-5 medium-4 large-3 columns">
+    <center><h2><%= @user2.username %> (<%= @user2.id %>)</h2></center>
+  </div>
+</div>
+
+<% history = @match.history_decoder %>
+
+<div class="row">
+  <div class="small-5 medium-4 large-3 columns">
+    <% history.each do |games, moves_winner| %>
+      <center><h4><%= moves_winner[:user1_move] %></h4></center>
+    <% end %>
+  </div>
+  <div class="small-2 medium-4 large-6 columns">
+    <% history.each do |games, moves_winner| %>
+      <center><h4><%= moves_winner[:winner] %></h4></center>
+    <% end %>
+  </div>
+  <div class="small-5 medium-4 large-3 columns">
+    <% history.each do |games, moves_winner| %>
+      <center><h4><%= moves_winner[:user2_move] %></h4></center>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="small-5 medium-4 large-3 columns">
+    <center><h2><%= @match.user1_game_wins %></h2></center>
+  </div>
+  <div class="small-2 medium-4 large-6 columns">
+   <center><h3>wins</h3></center>
+  </div>
+  <div class="small-5 medium-4 large-3 columns">
+    <center><h2><%= @match.user2_game_wins %></h2></center>
+  </div>
+</div>
+
+<br>
+
+<div class="row">
+  <div class="small-5 medium-4 large-3 columns">
+    <center><h4><%= @match.moves_made?[0] ? "Move Made" : "Waiting on Move" %></h4></center>
+  </div>
+  <div class="small-2 medium-4 large-6 columns">
+   <center><h3></h3></center>
+  </div>
+  <div class="small-5 medium-4 large-3 columns">
+    <center><h4><%= @match.moves_made?[1] ? "Move Made" : "Waiting on Move" %></h4></center>
+  </div>
+</div>
+
+<div class="row">
+  <center>
+    <% if @match.match_winner_id != 0 %>
+        <p>Game Over</p>
+        <br>
+        <a href='/user_homepage' class='small button'>User Homepage</a>
+    <% elsif @match.moves_made?[@user_index] == false %>
+      <%= erb :_move_choice %>
+    <% elsif @match.moves_made?[@opponent_index] == false %>
+      <br>
+      <p>Waiting on opponent to make a move</p>
+      <a href='/user_homepage' class='small button'>User Homepage</a>
+    <% else %>
+      <p>Both moves made</p>
+    <% end %>
+  </center>
+</div>
+
+

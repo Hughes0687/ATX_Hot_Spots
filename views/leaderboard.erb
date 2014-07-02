@@ -1,0 +1,33 @@
+<div class="row">
+  <center><h2>Leaderboard</h2></center>
+<div>
+
+<div class="row">
+  <div class="small-6 medium-4 large-2 columns">
+    <center><h3>username (id)</h3></center>
+  </div>
+  <div class="small-3 medium-4 large-5 columns">
+    <center><h3>wins</h3></center>
+  </div>
+  <div class="small-3 medium-4 large-5 columns">
+    <center><h3>losses</h3></center>
+  </div>
+</div>
+
+<div class="row">
+  <div class="small-6 medium-4 large-2 columns">
+    <% @highscores.each do |user| %>
+      <center><h4><%= user[:username] %> (<%= user[:id] %>)</h4></center>
+    <% end %>
+  </div>
+  <div class="small-3 medium-4 large-5 columns">
+    <% @highscores.each do |user| %>
+      <center><h4><%= user[:wins] %></h4></center>
+    <% end %>
+  </div>
+  <div class="small-3 medium-4 large-5 columns">
+    <% @highscores.each do |user| %>
+      <center><h4><%= user[:losses] %></h4></center>
+    <% end %>
+  </div>
+</div>
